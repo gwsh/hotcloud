@@ -6,6 +6,7 @@ import 'package:hotcloud/common/base_view_model.dart';
 import 'package:hotcloud/common/urls.dart';
 import 'package:hotcloud/model/subject_entity.dart';
 
+/// author gwsh
 class SubjectsViewModel extends BaseViewModel {
   SubjectEntity subjectEntity;
 

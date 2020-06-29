@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotcloud/common/base_view_model.dart';
 
+/// 黑暗模式
 class ThemeViewModel extends BaseViewModel {
   ThemeData themeData = lignt();
   bool liginte = true;
