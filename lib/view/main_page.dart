@@ -5,11 +5,12 @@ import 'package:hotcloud/common/image_cache_widget.dart';
 import 'package:hotcloud/common/multi_state_widget.dart';
 import 'package:hotcloud/common/provider_widget.dart';
 import 'package:hotcloud/model/subject_entity.dart';
+import 'package:hotcloud/utils/baidu_face_util.dart';
 import 'package:hotcloud/viewmodel/subjects_view_model.dart';
 import 'package:hotcloud/viewmodel/theme_view_model.dart';
 import 'package:hotcloud/widgets/hot_cloud_appbar.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:skeleton_text/skeleton_text.dart';
 
 /// 首页
 class MainPage extends StatefulWidget {
@@ -63,11 +64,16 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildSubjectWidget(SubjectEntity subjectEntity) {
-
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              face();
+            },
+            child: Text("活体测试"),
+          ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Row(
@@ -129,7 +135,7 @@ class _MainPageState extends State<MainPage> {
                                   borderRadius: BorderRadius.circular(5),
                                   child: ImageCacheWidget(
                                     imgUrl: bean.cover,
-                                    width: 140,
+                                    width: ScreenUtil().setWidth(260.0),
                                   ),
                                 ),
                               ),
@@ -177,5 +183,10 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
+  }
+
+  face() async {
+    await Permission.camera.request();
+    BaiduFaceUtil.handleVerify(context);
   }
 }

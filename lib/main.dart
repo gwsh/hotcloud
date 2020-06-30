@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:baidu_face_flutter/baidu_face_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,7 +8,15 @@ import 'common/routes.dart';
 import 'view/splash_page.dart';
 import 'viewmodel/theme_view_model.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // 人脸识别初始化
+  final config = Config(livenessTypeList: [LivenessType.Eye]);
+  if (Platform.isAndroid) {
+    await BaiduFace.instance.init('hotcloud-face-android', config: config);
+  } else if (Platform.isIOS) {
+    await BaiduFace.instance.init('hotcloud-face-ios', config: config);
+  }
   runApp(MyApp());
 }
 
