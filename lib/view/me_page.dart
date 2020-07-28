@@ -12,7 +12,7 @@ class MePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: HotCloudAppbar(
-        title: "电影",
+        title: "我的",
         canBack: false,
         actions: <Widget>[
           InkWell(
@@ -30,15 +30,14 @@ class MePage extends StatelessWidget {
       ).build(context),
       body: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) {
-                return TestPage(from: "MePage",tab: 1);
-              }
-          ));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return TestPage(from: "MePage", tab: 1);
+          }));
         },
         child: Container(
           height: double.infinity,
           width: double.infinity,
+          alignment: Alignment.center,
           child: Text(
             "MePage",
             style: Theme.of(context).textTheme.subtitle1,
