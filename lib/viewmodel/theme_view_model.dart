@@ -24,9 +24,10 @@ class ThemeViewModel extends BaseViewModel {
       backgroundColor: Colors.white,
       buttonColor: Colors.blue,
       brightness: Brightness.light,
-      selectedRowColor:   Colors.blueAccent,
+      selectedRowColor: Colors.blueAccent,
       unselectedWidgetColor: Colors.grey,
       primaryColor: Color(0xff248bfe),
+      errorColor: Colors.grey[300],
       appBarTheme: AppBarTheme(
         elevation: 0.0,
         textTheme: TextTheme(
@@ -43,9 +44,10 @@ class ThemeViewModel extends BaseViewModel {
       ),
       backgroundColor: Colors.black,
       buttonColor: Colors.blueGrey,
-      selectedRowColor:Colors.indigo,
+      selectedRowColor: Colors.blueGrey,
       unselectedWidgetColor: Colors.white70,
       brightness: Brightness.light,
+      errorColor: Colors.indigo[300],
       primaryColor: Color(0xff000000),
       appBarTheme: AppBarTheme(
         elevation: 0.0,

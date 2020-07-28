@@ -33,17 +33,23 @@ class _MainPageState extends State<MainPage> {
     _screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: HotCloudAppbar(title: "电影", canBack: false, actions: <Widget>[
-        InkWell(
-          onTap: () {
-            Provider.of<ThemeViewModel>(context, listen: false).chnageTheme();
-          },
-          child: Container(
-            width: ScreenUtil().setWidth(100),
-            child: Icon(Icons.lightbulb_outline),
+      appBar: HotCloudAppbar(
+        title: "电影",
+        canBack: false,
+        actions: <Widget>[
+          InkWell(
+            onTap: () {
+              Provider.of<ThemeViewModel>(context, listen: false).chnageTheme();
+            },
+            child: Container(
+              width: ScreenUtil().setWidth(100),
+              child: Icon(
+                Icons.lightbulb_outline,
+              ),
+            ),
           ),
-        )
-      ]).build(context),
+        ],
+      ).build(context),
       body: Container(
         height: double.infinity,
         child: SingleChildScrollView(
@@ -68,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 BaiduFaceUtil.handleVerify(context);
               },
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).buttonColor,
               child: Text(
                 "活体测试",
                 style: TextStyle(
@@ -80,7 +86,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 RestartWidget.restartApp(context);
               },
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).buttonColor,
               child: Text(
                 "重启APP",
                 style: TextStyle(

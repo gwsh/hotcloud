@@ -14,7 +14,7 @@ class LoadingStateWidget extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.grey[300],
+                  color: Theme.of(context).errorColor,
                 ),
               ),
             ),
@@ -25,7 +25,7 @@ class LoadingStateWidget extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.grey[300],
+                  color: Theme.of(context).errorColor,
                 ),
               ),
             ),

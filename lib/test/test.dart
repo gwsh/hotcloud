@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotcloud/components/components.dart';
-import 'package:hotcloud/test/test.dart';
 import 'package:hotcloud/viewmodel/theme_view_model.dart';
 import 'package:hotcloud/widgets/hot_cloud_appbar.dart';
 import 'package:provider/provider.dart';
 
-class MePage extends StatelessWidget {
+class TestPage extends StatelessWidget {
+  final String from;
+  final int tab;
+
+  const TestPage({Key key, this.from, this.tab}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: HotCloudAppbar(
         title: "电影",
-        canBack: false,
+        canBack: true,
         actions: <Widget>[
           InkWell(
             onTap: () {
@@ -28,25 +32,12 @@ class MePage extends StatelessWidget {
           ),
         ],
       ).build(context),
-      body: InkWell(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) {
-                return TestPage(from: "MePage",tab: 1);
-              }
-          ));
-        },
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Text(
-            "MePage",
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-        ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Text("我来自于 $from"),
       ),
       bottomNavigationBar: SdTabBar(
-        tab: 1,
+        tab: tab,
       ),
     );
   }
