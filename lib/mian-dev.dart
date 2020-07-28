@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'common/routes.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: Builder(
         builder: (context) => MaterialApp(
           onGenerateRoute: (settings) {
-            return Routes.finadRoutes(settings);
+            return Routes.findRoutes(settings);
           },
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

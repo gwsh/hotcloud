@@ -6,10 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BaiduFaceUtil {
-
-
- static  void handleVerify(BuildContext context) async {
+  static void handleVerify(BuildContext context) async {
     try {
+      await Permission.camera.request();
       final base64Image = await BaiduFace.instance.liveDetect();
       showDialog(
         context: context,

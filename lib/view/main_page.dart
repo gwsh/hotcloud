@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotcloud/common/global.dart';
 import 'package:hotcloud/common/image_cache_widget.dart';
 import 'package:hotcloud/common/multi_state_widget.dart';
 import 'package:hotcloud/common/provider_widget.dart';
+import 'package:hotcloud/components/components.dart';
 import 'package:hotcloud/model/subject_entity.dart';
 import 'package:hotcloud/utils/baidu_face_util.dart';
 import 'package:hotcloud/viewmodel/subjects_view_model.dart';
 import 'package:hotcloud/viewmodel/theme_view_model.dart';
 import 'package:hotcloud/widgets/hot_cloud_appbar.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import '../main.dart';
 
 /// 首页
 class MainPage extends StatefulWidget {
@@ -19,6 +21,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  Size _screen;
+
   @override
   void initState() {
     super.initState();
@@ -26,7 +30,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(width: 750, height: 1334);
+    _screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: HotCloudAppbar(title: "电影", canBack: false, actions: <Widget>[
@@ -34,7 +38,10 @@ class _MainPageState extends State<MainPage> {
           onTap: () {
             Provider.of<ThemeViewModel>(context, listen: false).chnageTheme();
           },
-          child: Icon(Icons.lightbulb_outline),
+          child: Container(
+            width: ScreenUtil().setWidth(100),
+            child: Icon(Icons.lightbulb_outline),
+          ),
         )
       ]).build(context),
       body: Container(
@@ -42,7 +49,7 @@ class _MainPageState extends State<MainPage> {
         child: SingleChildScrollView(
           child: Column(children: <Widget>[
             Container(
-              height: ScreenUtil().setHeight(440),
+              height: _screen.height * 0.4,
               child: ProviderWidget<SubjectsViewModel>(
                 model: SubjectsViewModel(),
                 onReady: (model) {
@@ -57,8 +64,35 @@ class _MainPageState extends State<MainPage> {
                 },
               ),
             ),
+            RaisedButton(
+              onPressed: () {
+                BaiduFaceUtil.handleVerify(context);
+              },
+              color: Theme.of(context).backgroundColor,
+              child: Text(
+                "活体测试",
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.subtitle1.color,
+                ),
+              ),
+            ),
+            RaisedButton(
+              onPressed: () {
+                RestartWidget.restartApp(context);
+              },
+              color: Theme.of(context).backgroundColor,
+              child: Text(
+                "重启APP",
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.subtitle1.color,
+                ),
+              ),
+            ),
           ]),
         ),
+      ),
+      bottomNavigationBar: SdTabBar(
+        tab: 0,
       ),
     );
   }
@@ -68,12 +102,6 @@ class _MainPageState extends State<MainPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          RaisedButton(
-            onPressed: () {
-              face();
-            },
-            child: Text("活体测试"),
-          ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Row(
@@ -135,7 +163,9 @@ class _MainPageState extends State<MainPage> {
                                   borderRadius: BorderRadius.circular(5),
                                   child: ImageCacheWidget(
                                     imgUrl: bean.cover,
-                                    width: ScreenUtil().setWidth(260.0),
+                                    width: _screen.height <= 700
+                                        ? _screen.width * 0.35
+                                        : _screen.width * 0.45,
                                   ),
                                 ),
                               ),
@@ -183,10 +213,5 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
-  }
-
-  face() async {
-    await Permission.camera.request();
-    BaiduFaceUtil.handleVerify(context);
   }
 }
