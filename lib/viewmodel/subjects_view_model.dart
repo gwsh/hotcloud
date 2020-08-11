@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:hotcloud/api/base_state.dart';
 import 'package:hotcloud/api/http.dart';
@@ -29,7 +28,7 @@ class SubjectsViewModel extends BaseViewModel {
           notifyListeners();
         });
       },
-      fail: (reason, statuscode) {
+      fail: (reason, statusCode) {
         state = BaseState.FAIL;
         notifyListeners();
       },

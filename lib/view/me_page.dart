@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotcloud/common/routes.dart';
 import 'package:hotcloud/components/components.dart';
-import 'package:hotcloud/test/test.dart';
 import 'package:hotcloud/viewmodel/theme_view_model.dart';
 import 'package:hotcloud/widgets/hot_cloud_appbar.dart';
 import 'package:provider/provider.dart';
@@ -30,16 +31,14 @@ class MePage extends StatelessWidget {
       ).build(context),
       body: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return TestPage(from: "MePage", tab: 1);
-          }));
+          Navigator.of(context).push(Routes.findRoutes(RouteSettings(name: Routes.test1_page,arguments: {"tab":1,"from":"123"})));
         },
         child: Container(
           height: double.infinity,
           width: double.infinity,
           alignment: Alignment.center,
           child: Text(
-            "MePage",
+            "点我测试1->MePage",
             style: Theme.of(context).textTheme.subtitle1,
           ),
         ),

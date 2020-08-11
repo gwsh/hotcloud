@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:baidu_face_flutter/baidu_face_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:hotcloud/common/global.dart';
 import 'package:provider/provider.dart';
-
-import 'common/global.dart';
 import 'common/routes.dart';
+import 'utils/new_observer.dart';
 import 'view/splash_page.dart';
 import 'viewmodel/theme_view_model.dart';
 
@@ -18,6 +18,13 @@ void main() async {
   } else if (Platform.isIOS) {
     await BaiduFace.instance.init('hotcloud-face-ios', config: config);
   }
+//  Global.init(isPrintLogger: false).then((value) {
+//    runApp(
+//      RestartWidget(
+//        child: MyApp(),
+//      ),
+//    );
+//  });
   runApp(
     RestartWidget(
       child: MyApp(),
@@ -40,6 +47,7 @@ class RestartWidget extends StatefulWidget {
 
 class _RestartWidgetState extends State<RestartWidget> {
   Key key = UniqueKey();
+
   void restartApp() {
     setState(() {
       key = UniqueKey();
@@ -66,6 +74,12 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: (settings) {
             return Routes.findRoutes(settings);
           },
+          onUnknownRoute: (settings) {
+            return Routes.findRoutes(settings);
+          },
+//          showPerformanceOverlay: true,
+//          debugShowMaterialGrid: true,
+          navigatorObservers: <NavigatorObserver>[NewObserver()],
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: Provider.of<ThemeViewModel>(context, listen: true).themeData,
