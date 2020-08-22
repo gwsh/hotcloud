@@ -7,6 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
+        android:value="9ab370ed7687143780e1eafa4ccc94f8"
         android:label="hotcloud"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -23,7 +24,8 @@
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
-              />
+              android:value="9ab370ed7687143780e1eafa4ccc94f8"
+                />
             <!-- Displays an Android View that continues showing the launch screen
                  Drawable until Flutter paints its first frame, then this splash
                  screen fades out. A splash screen is useful to avoid any visual
@@ -31,6 +33,7 @@
                  Flutter's first frame. -->
             <meta-data
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
+              android:value="9ab370ed7687143780e1eafa4ccc94f8"
               android:resource="@drawable/launch_background"
               />
             <intent-filter>
