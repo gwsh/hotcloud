@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hotcloud/common/global.dart';
 import 'package:hotcloud/common/image_cache_widget.dart';
 import 'package:hotcloud/common/multi_state_widget.dart';
 import 'package:hotcloud/common/provider_widget.dart';

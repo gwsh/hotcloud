@@ -11,9 +11,11 @@ packages:
   baidu_face_flutter:
     dependency: "direct main"
     description:
-      path: "plugins/baidu_face_flutter"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "14439abde6295e5af8f3c8a28dab4eab912a6158"
+      url: "git://github.com/gwsh/baidu_face_flutter.git"
+    source: git
     version: "0.0.1"
   boolean_selector:
     dependency: transitive
